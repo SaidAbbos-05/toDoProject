@@ -34,5 +34,34 @@ public class TaskService {
         return stringJoiner.toString();
     }
 
+    public void delete(Integer anInt) throws IndexOutOfBoundsException{
+        tasks.remove(tasks.get(anInt));
+    }
+
+
+    public void update(int num, int index, Object data) {
+        switch (num) {
+            case 1:
+                tasks.get(index).setName((String)data);
+                break;
+            case 2:
+                tasks.get(index).setDescription((String)data);
+                break;
+            case 3:
+                tasks.get(index).setStatus((Status) data);
+                break;
+        }
+    }
+
+    public ArrayList<Task> getAllTasks() {
+        ArrayList<Task> res = new ArrayList<>();
+        for(int i =0; i<tasks.size(); i++) {Object o = tasks.get(i);
+            if (o instanceof Task task){
+                res.add(task);
+            }
+        }
+        return res;
+    }
+
 
 }
